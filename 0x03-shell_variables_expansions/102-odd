@@ -1,2 +1,2 @@
 #!/bin/bash
-ls -1 | grep -E '^[0-9]+-[a-zA-Z_]+$'
+ls -1 | grep -E '^[0-9]+-[a-z_]+$' | cut -d '-' -f 2-
