@@ -1,2 +1,2 @@
 #!/bin/bash
-ls -1 | grep -E -v "^\[.*\]$"
+ls -1 | grep -E '^[0-9]+-[a-zA-Z_]+$'
