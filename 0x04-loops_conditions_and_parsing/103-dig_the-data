@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+# This script is displaying Format: OCCURENCE_NUMBER IP HTTP_CODE 
+# of the apache-access.log file Ordered from the greatest to the lowest 
+# number of occurrences using awk
+
+awk  '{print $1, $9}' apache-access.log | sort | uniq -c | sort -rn
