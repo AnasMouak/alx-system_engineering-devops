@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+# This script is loops from 1 to 100  Displays FizzBuzz 
+#when the number is a multiple of 3 and 5, Fizz when the number 
+#is multiple of 3, Buzz when the number is a multiple of 5,
+#Otherwise, displays the number
+counter=1
+
+while [ $counter -le 100 ]; do
+    if [ $((counter % 3)) -eq 0 ] && [ $((counter % 5)) -eq 0 ]; then
+        echo "FizzBuzz"
+    elif [ $((counter % 3)) -eq 0 ]; then
+        echo "Fizz"
+    elif [ $((counter % 5)) -eq 0 ]; then
+        echo "Buzz"
+    else
+        echo "$counter"
+    fi
+    ((counter++))
+done
