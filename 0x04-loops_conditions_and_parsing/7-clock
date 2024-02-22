@@ -4,7 +4,7 @@ counterHour=0
 
 while [ $counterHour -le 12 ]; do
     echo "Hour: $counterHour"
-    counterMin=0
+    counterMin=1
     while [ $counterMin -le 59 ]; do
         echo "$counterMin"
         ((counterMin++))
