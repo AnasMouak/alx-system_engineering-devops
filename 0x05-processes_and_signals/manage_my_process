@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+# This script displays I am alive! indefinitely in /tmp/my_process.
+
+for (( ; ; )); do
+    echo "I am alive!" 
+    sleep 2
+done > /tmp/my_process
