@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# This script terminated the process of 4-to_infinity_and_beyond.
+pid=$(lsof -t "4-to_infinity_and_beyond")
+kill "$pid"
