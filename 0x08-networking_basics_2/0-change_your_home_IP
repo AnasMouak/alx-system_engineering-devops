@@ -3,7 +3,7 @@
 # localhost resolves to 127.0.0.2.
 # facebook.com resolves to 8.8.8.8.
 
-old_content="127.0.0.1\s*localhost"
+old_content="^127.0.0.1\s+localhost"
 new_content="127.0.0.2       localhost"
 file="/etc/hosts"
 
