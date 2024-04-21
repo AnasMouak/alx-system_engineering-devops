@@ -1,10 +1,12 @@
 #config file using Puppet
-file { '/etc/ssh/ssh_config':
+file { 'Turn off passwd auth':
   ensure  => present,
+  path   => '/etc/ssh/ssh_config',
   content => "PasswordAuthentication no\n",
 }
 
-file { '/etc/ssh/ssh_config':
+file { 'Declare identity file':
   ensure  => present,
+  path   => '/etc/ssh/ssh_config',
   content => "IdentityFile ~/.ssh/school\n",
 }
