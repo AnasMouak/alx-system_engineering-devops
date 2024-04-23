@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 # Script that redirects /redirect_me and restart nginx
+apt-get -y install nginx
+ufw allow 'Nginx HTTP'
+echo 'Hello World!' > /var/www/html/index.html
 service nginx start
 config_file="/etc/nginx/sites-available/default"
 
