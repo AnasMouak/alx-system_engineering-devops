@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 # Script that redirects /redirect_me and restart nginx
+service nginx start
 config_file="/etc/nginx/sites-available/default"
 
 content_to_add="server_name _;\n\n\tlocation = /redirect_me {\n\treturn 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;\n\t}"
