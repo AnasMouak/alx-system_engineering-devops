@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+#command inside the container that start apache2 and display the content of the web page with curl 0:8080
+service apache2 status
