@@ -1,44 +1,23 @@
 # configuring server with Puppet
-
-# Update package repositories
-exec { 'apt-update':
-  command => 'apt-get update',
-  path    => '/usr/bin',
-  before  => Package['nginx'],
-}
-
-# Install Nginx package
 package { 'nginx':
-  ensure  => installed,
-  require => Exec['apt-update'],
+  ensure   => '1.18.0',
+  provider => 'apt',
 }
 
-# Allow Nginx HTTP traffic in UFW
-exec { 'allow-nginx-http':
-  command => 'ufw allow "Nginx HTTP"',
-  path    => '/usr/bin',
-  require => Package['nginx'],
+file { 'Hello World':
+  path    => '/var/www/html/index.nginx-debian.html',
+  content => 'Hello World',
 }
 
-# Create index file with "Hello World!"
-file { '/var/www/html/index.nginx-debian.html':
-  content => 'Hello World!',
-  require => Package['nginx'],
+file_line { 'Hello World':
+  path  => '/etc/nginx/sites-available/default',
+  after => 'server_name _;',
+  line  => '\trewrite ^/redirect_me https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent;',
 }
 
-# Configure Nginx site with custom location block
-file { '/etc/nginx/sites-available/default':
-  content => template('my_module/nginx_site.erb'),
-  notify  => Service['nginx'],
-  require => Package['nginx'],
-}
-
-# Restart Nginx service after configuration changes
-service { 'nginx':
-  ensure  => running,
-  enable  => true,
-  require => [
-    Package['nginx'],
-    File['/etc/nginx/sites-available/default'],
-  ],
+exec { 'service':
+  command  => 'service nginx start',
+  provider => 'shell',
+  user     => 'root',
+  path     => '/usr/sbin/service',
 }
