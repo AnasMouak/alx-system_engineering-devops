@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+# Install nginx and configure server web-01 and web-02 with a custom header.
+
+apt-get -y update
+apt-get -y install nginx
+ufw allow 'Nginx HTTP'
+service nginx start
+
+var=$(hostname)
+
+config_file="/etc/nginx/sites-available/default"
+
+content_to_add="server_name _;\n\n\tadd_header X-Served-By $var;"
+sed -i "s,server_name _;,$content_to_add," "$config_file"
+service nginx restart
