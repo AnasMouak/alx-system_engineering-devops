@@ -16,7 +16,7 @@ frontend myfrontend
 backend mybackend
         balance roundrobin
         mode http
-        server server1 100.26.218.180:80 check
-        server server2 35.168.8.95:80 check" >> "/etc/haproxy/haproxy.cfg"
+        server 531065-web-01 100.26.218.180:80 check
+        server 531065-web-02 35.168.8.95:80 check" >> "/etc/haproxy/haproxy.cfg"
 
 service haproxy restart
