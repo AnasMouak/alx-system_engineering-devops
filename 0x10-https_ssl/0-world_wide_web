@@ -1,21 +1,25 @@
 #!/usr/bin/env bash
 # Configure your domain zone.
 
-# Function to perform DNS lookup and print results
-dns_lookup() {
-    local domain="$1"
-    local subdomain="$2"
+domain="$1"
+subdomain="$2"
 
-    dig "$subdomain.$domain" > output.txt
-    echo "The subdomain '$subdomain' is a '$(awk 'NR==13 { print $4 }' < output.txt)' record and points to '$(awk 'NR==13 { print $5 }' < output.txt)'"
-}
-
-# Main script logic
 if [ "$#" -eq 2 ]; then
-    dns_lookup "$1" "$2"
+    record=$(dig "$subdomain.$domain" |  awk 'NR==13 { print $4 }')
+    ip=$(dig "$subdomain.$domain" | awk 'NR==13 { print $5 }')
+    echo "The subdomain '$2' is a '$record' record and points to '$ip'"
 else
-    dns_lookup "$1" www
-    dns_lookup "$1" lb-01
-    dns_lookup "$1" web-01
-    dns_lookup "$1" web-02
+    record=$(dig www."$domain" |  awk 'NR==13 { print $4 }')
+    ip=$(dig www."$domain" | awk 'NR==13 { print $5 }')
+    echo "The subdomain www is a '$record' record and points to '$ip'"
+    record=$(dig lb-01."$domain" |  awk 'NR==13 { print $4 }')
+    ip=$(dig lb-01."$domain" | awk 'NR==13 { print $5 }')
+    echo "The subdomain lb-01 is a '$record' record and points to '$ip'"
+    record=$(dig web-01."$domain" |  awk 'NR==13 { print $4 }')
+    ip=$(dig web-01."$domain" | awk 'NR==13 { print $5 }')
+    echo "The subdomain web-01 is a '$record' record and points to '$ip'"
+    record=$(dig web-02."$domain" |  awk 'NR==13 { print $4 }')
+    ip=$(dig web-02."$domain" | awk 'NR==13 { print $5 }')
+    echo "The subdomain web-02 is a '$record' record and points to '$ip'"
 fi
+
