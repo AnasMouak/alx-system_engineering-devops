@@ -8,12 +8,12 @@ if [ "$#" -eq 2 ]; then
     dig "$subdomain"."$domain" > output.txt
     echo "The subdomain '$2' is a '$(awk 'NR==13 { print $4 }' < output.txt)' record and points to '$(awk 'NR==13 { print $5 }' < output.txt)'"
 else
-    dig www."$domain" > output.txt
-    echo "The subdomain www is a '$(awk 'NR==13 { print $4 }' < output.txt)' record and points to '$(awk 'NR==13 { print $5 }' < output.txt)'"
-    dig lb-01."$domain" > output.txt
-    echo "The subdomain lb-01 is a '$(awk 'NR==13 { print $4 }' < output.txt)' record and points to '$(awk 'NR==13 { print $5 }' < output.txt)'"
-    dig web-01."$domain" > output.txt
-    echo "The subdomain web-01 is a '$(awk 'NR==13 { print $4 }' < output.txt)' record and points to '$(awk 'NR==13 { print $5 }' < output.txt)'"
-    dig web-02."$domain" > output.txt
-    echo "The subdomain web-02 is a '$(awk 'NR==13 { print $4 }' < output.txt)' record and points to '$(awk 'NR==13 { print $5 }' < output.txt)'"
+    dig www."$domain" > output_www.txt
+    echo "The subdomain www is a '$(awk 'NR==13 { print $4 }' < output_www.txt)' record and points to '$(awk 'NR==13 { print $5 }' < output_www.txt)'"
+    dig lb-01."$domain" > output_lb-01.txt
+    echo "The subdomain lb-01 is a '$(awk 'NR==13 { print $4 }' < output_lb-01.txt)' record and points to '$(awk 'NR==13 { print $5 }' < output_lb-01.txt)'"
+    dig web-01."$domain" > output_web-01.txt
+    echo "The subdomain web-01 is a '$(awk 'NR==13 { print $4 }' < output_web-01.txt)' record and points to '$(awk 'NR==13 { print $5 }' < output_web-01.txt)'"
+    dig web-02."$domain" > output_web-02.txt
+    echo "The subdomain web-02 is a '$(awk 'NR==13 { print $4 }' < output_web-02.txt)' record and points to '$(awk 'NR==13 { print $5 }' < output_web-02.txt)'"
 fi
