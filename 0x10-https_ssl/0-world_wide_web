@@ -1,23 +1,14 @@
 #!/usr/bin/env bash
-# Audit domain and subdomain records.
+# Configure your domain zone.
 
 domain="$1"
 subdomain="$2"
 
-# Function to retrieve record information
-get_record_info() {
-    local sub="$1"
-    local rec=$(dig "$sub.$domain" | awk 'NR==13 { print $4 }')
-    local ip=$(dig "$sub.$domain" | awk 'NR==13 { print $5 }')
-    echo "The subdomain $sub is a '$rec' record and points to '$ip'"
-}
-
-# Check if subdomain is provided
-if [ -n "$subdomain" ]; then
-    get_record_info "$subdomain"
+if [ "$#" -eq 2 ]; then
+    dig "$subdomain.$domain" | awk -v sd="$subdomain" 'NR==13 { print "The subdomain " sd " is a " $4 " record and points to " $5}' 
 else
-    subdomains=("www" "lb-01" "web-01" "web-02")
-    for sub in "${subdomains[@]}"; do
-        get_record_info "$sub"
-    done
+    dig "www.$domain" | awk  'NR==13 { print "The subdomain www is a " $4 " record and points to " $5}' 
+    dig "lb-01.$domain" | awk  'NR==13 { print "The subdomain lb-01 is a " $4 " record and points to " $5}' 
+    dig "web-01.$domain" | awk  'NR==13 { print "The subdomain web-01 is a " $4 " record and points to " $5}' 
+    dig "web-02.$domain" | awk  'NR==13 { print "The subdomain web-02 is a " $4 " record and points to " $5}' 
 fi
