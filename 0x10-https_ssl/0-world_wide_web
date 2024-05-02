@@ -5,10 +5,10 @@ domain="$1"
 subdomain="$2"
 
 if [ "$#" -eq 2 ]; then
-    dig "$subdomain.$domain" | awk -v sd="$subdomain" 'NR==13 { print "The subdomain " sd " is a " $4 " record and points to " $5}' 
+    dig "$subdomain.$domain" | grep -A1 'ANSWER SECTION:' | awk -v sd="$subdomain" 'NR==2 { print "The subdomain " sd " is a " $4 " record and points to " $5}' 
 else
-    dig "www.$domain" | awk  'NR==13 { print "The subdomain www is a " $4 " record and points to " $5}' 
-    dig "lb-01.$domain" | awk  'NR==13 { print "The subdomain lb-01 is a " $4 " record and points to " $5}' 
-    dig "web-01.$domain" | awk  'NR==13 { print "The subdomain web-01 is a " $4 " record and points to " $5}' 
-    dig "web-02.$domain" | awk  'NR==13 { print "The subdomain web-02 is a " $4 " record and points to " $5}' 
+    dig "www.$domain" | grep -A1 'ANSWER SECTION:' | awk  'NR==2 { print "The subdomain www is a " $4 " record and points to " $5}' 
+    dig "lb-01.$domain" | grep -A1 'ANSWER SECTION:' | awk  'NR==2 { print "The subdomain lb-01 is a " $4 " record and points to " $5}' 
+    dig "web-01.$domain" | grep -A1 'ANSWER SECTION:' | awk  'NR==2 { print "The subdomain web-01 is a " $4 " record and points to " $5}' 
+    dig "web-02.$domain" | grep -A1 'ANSWER SECTION:' | awk  'NR==2 { print "The subdomain web-02 is a " $4 " record and points to " $5}' 
 fi
