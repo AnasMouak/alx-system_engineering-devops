@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+#script that run the whoami command under the user passed as an argument.
+
+if [ "$#" -eq 1 ]; then
+	echo "$1"
+else
+	whoami	
+fi
