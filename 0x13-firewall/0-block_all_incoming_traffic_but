@@ -1,4 +1,4 @@
-udo apt update
+sudo apt update
 sudo apt install ufw
 sudo ufw default deny incoming
 sudo ufw allow 22/tcp
