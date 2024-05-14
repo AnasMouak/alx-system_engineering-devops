@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
 # Nginx is running as the nginx user
-
+sed -i "s/#user www-data/user nginx/" /etc/nginx/nginx.conf
 chmod 644 /etc/nginx/nginx.conf
 sudo -u nginx service nginx start
