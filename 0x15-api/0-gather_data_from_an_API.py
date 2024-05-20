@@ -22,4 +22,4 @@ if __name__ == "__main__":
           .format(EMPLOYEE_NAME, NUMBER_OF_DONE_TASKS, TOTAL_NUMBER_OF_TASKS))
 
     for task in TASK_TITLE:
-        print(f'\t{task.get("title")}')
+        print(f'\t {task.get("title")}')
