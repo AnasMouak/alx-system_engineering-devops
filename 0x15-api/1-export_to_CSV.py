@@ -16,7 +16,7 @@ if __name__ == "__main__":
     username = response.json().get('username')
     list_userId = [task for task in response2.json()]
 
-    with open('USER_ID.csv', mode='w', newline='') as file:
+    with open(f'{sys.argv[1]}.csv', mode='w', newline='') as file:
         csv_writer = csv.writer(file)
         for task in list_userId:
             csv_writer.writerow([f'{user_id}', f'{username}',
