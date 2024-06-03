@@ -41,7 +41,7 @@ The issue was resolved by correcting the Nginx configuration to ensure even dist
 ## A Bit of Humor
 We all know how it feels when things go wrong:
 
-![Funny Meme](https://via.placeholder.com/600x300?text=Funny+Meme)
+![Funny Meme](https://imgur.com/2gGYbWO)
 
 By implementing these measures, we aim to prevent similar outages and ensure a more robust and resilient service.
 
