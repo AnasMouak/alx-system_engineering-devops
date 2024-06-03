@@ -1,6 +1,6 @@
 # Postmortem Report: Outage on MyWebApp Service
 
-![Outage Diagram](https://drive.google.com/file/d/1htZz6DiKJ7Wdd5uAvWvw0npxZBRkN3pN/view)
+![Outage Diagram](https://drive.usercontent.google.com/download?id=1Hxsf92EAfjgTMISAEUPlnRR2zih6kwgI&authuser=0)
 
 ## Issue Summary
 **Duration:** May 28, 2024, 14:00 - 16:00 UTC (2 hours)  
