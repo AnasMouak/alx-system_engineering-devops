@@ -1,5 +1,7 @@
 # Postmortem Report: Outage on MyWebApp Service
 
+![Outage Diagram](https://via.placeholder.com/600x300?text=Outage+Diagram)
+
 ## Issue Summary
 **Duration:** May 28, 2024, 14:00 - 16:00 UTC (2 hours)  
 **Impact:** The MyWebApp service experienced a significant slowdown. Users encountered slow page loads and occasional timeouts. Approximately 70% of users were affected.  
@@ -35,6 +37,11 @@ The issue was resolved by correcting the Nginx configuration to ensure even dist
 3. Create a deployment checklist that includes configuration validation steps.
 4. Conduct training sessions for the team on best practices for configuration changes and deployment.
 5. Hold a post-incident review meeting to ensure lessons learned are communicated and incorporated into standard procedures.
+
+## A Bit of Humor
+We all know how it feels when things go wrong:
+
+![Funny Meme](https://via.placeholder.com/600x300?text=Funny+Meme)
 
 By implementing these measures, we aim to prevent similar outages and ensure a more robust and resilient service.
 
