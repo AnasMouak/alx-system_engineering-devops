@@ -1,6 +1,6 @@
 # Postmortem Report: Outage on MyWebApp Service
 
-![Outage Diagram](https://via.placeholder.com/600x300?text=Outage+Diagram)
+![Outage Diagram](https://drive.google.com/file/d/1htZz6DiKJ7Wdd5uAvWvw0npxZBRkN3pN/view)
 
 ## Issue Summary
 **Duration:** May 28, 2024, 14:00 - 16:00 UTC (2 hours)  
@@ -41,7 +41,7 @@ The issue was resolved by correcting the Nginx configuration to ensure even dist
 ## A Bit of Humor
 We all know how it feels when things go wrong:
 
-![Funny Meme](https://imgur.com/2gGYbWO)
+![Funny Meme]()
 
 By implementing these measures, we aim to prevent similar outages and ensure a more robust and resilient service.
 
