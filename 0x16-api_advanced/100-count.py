@@ -1,0 +1,50 @@
+#!/usr/bin/python3
+"""
+write a function that queries the Reddit API ,
+parse the title of all hot articles, and prints
+a sorted count of given keywords (case-insensitive,
+delimited by spaces.
+"""
+import requests
+
+
+def count_words(subreddit, word_list, hot_list=[], after=None):
+    """
+    Get the top ten posts for a given subreddit.
+
+    Args:
+        subreddit (str): The name of the subreddit.
+        word_list (list): A list of words to search for in the titles of the
+            hot articles.
+        hot_list (list): A list to store the titles of the hot articles.
+        after (str): The id of the last post in the previous request.
+
+    Returns:
+        None.
+    """
+    url = f"https://www.reddit.com/r/{subreddit}/hot.json?after={after}"
+    headers = {"User-Agent": "Mozilla/5.0"}
+
+    response = requests.get(url, headers=headers)
+    if response.status_code == 200:
+        data = response.json()
+        posts = data.get("data").get("children")
+        for post in posts:
+            hot_list.append(post.get("data").get("title"))
+        after = data.get("data").get("after")
+        if after is not None:
+            count_words(subreddit, word_list, hot_list, after)
+        else:
+            word_dict = {}
+            for word in word_list:
+                word_dict[word] = 0
+            for title in hot_list:
+                for word in word_list:
+                    word_dict[word] += title.lower().split().count(word.
+                                                                   lower())
+            for key, value in sorted(word_dict.items(), key=lambda x: x[1],
+                                     reverse=True):
+                if value > 0:
+                    print(f"{key}: {value}")
+    else:
+        print(None)
