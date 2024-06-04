@@ -3,6 +3,7 @@
 write common function that queries the Reddit API
     and returns the number of subscribers.
 """
+
 import requests
 
 
@@ -18,12 +19,14 @@ def number_of_subscribers(subreddit):
         Returns 0 if the request fails.
     """
     url = f"https://www.reddit.com/r/{subreddit}/about.json"
-    headers = {"User-Agent": "Mozilla/5.0"}
+    headers = {'User-Agent': 'Mozilla/5.0 \
+                (compatible; Reddit API subscriber count bot)'}
 
-    response = requests.get(url, headers=headers)
-    if response.status_code == 200:
+    try:
+        response = requests.get(url, headers=headers, allow_redirects=False)
+        if response.status_code != 200:
+            return 0
         data = response.json()
-        subscribers = data.get("data").get("subscribers")
-        return subscribers
-    else:
+        return data.get('data', {}).get('subscribers', 0)
+    except requests.RequestException:
         return 0
