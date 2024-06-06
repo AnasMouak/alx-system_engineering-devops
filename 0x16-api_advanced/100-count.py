@@ -24,8 +24,8 @@ def count_words(subreddit, word_list, hot_list=[], after=None):
     """
     url = f"https://www.reddit.com/r/{subreddit}/hot.json?after={after}"
     headers = {"User-Agent": "Mozilla/5.0"}
-
-    response = requests.get(url, headers=headers)
+    
+    response = requests.get(url, headers=headers, allow_redirects=False)
     if response.status_code == 200:
         data = response.json()
         posts = data.get("data").get("children")
@@ -36,14 +36,18 @@ def count_words(subreddit, word_list, hot_list=[], after=None):
             count_words(subreddit, word_list, hot_list, after)
         else:
             word_dict = {}
-            for word in word_list:
-                word_dict[word] = 0
+            normalized_word_list = [word.lower() for word in word_list]
+
             for title in hot_list:
-                for word in word_list:
-                    word_dict[word] += title.lower().split().count(word.
-                                                                   lower())
-            for key, value in sorted(word_dict.items(), key=lambda x: x[1],
-                                     reverse=True):
+                words_in_title = title.lower().split()
+                for word in normalized_word_list:
+                    word_dict[word] = word_dict.get(
+                        word, 0) + words_in_title.count(word)
+
+            sorted_word_counts = sorted(word_dict.items(), key=lambda x:
+                                        (-x[1], x[0]))
+
+            for key, value in sorted_word_counts:
                 if value > 0:
                     print(f"{key}: {value}")
     else:
